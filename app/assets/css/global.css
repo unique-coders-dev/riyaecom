@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Cairo', sans-serif;
+
+  /* RIYA brand colors */
+  --color-topbar: #091019;
+  --color-navbar: #390049;
+  --color-icon-circle: #541676;
+}
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html, body {
+    font-family: 'Cairo', sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    /* Disable scroll anchoring: the collapsing sticky top bar shrinks the
+       document, and the browser's anchor compensation would otherwise nudge
+       scrollY back, causing the hide/show state to oscillate (shake). */
+    overflow-anchor: none;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  ul, ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  input:focus {
+    outline: none;
+  }
+}
+
+/* Mobile site-features marquee: drifts back and forth continuously */
+.features-marquee {
+  width: max-content;
+  animation: features-marquee-ltr 13s ease-in-out infinite alternate;
+}
+
+[dir="rtl"] .features-marquee {
+  animation-name: features-marquee-rtl;
+}
+
+@keyframes features-marquee-ltr {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-100% + 100vw - 32px)); }
+}
+
+@keyframes features-marquee-rtl {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(100% - 100vw + 32px)); }
+}
+
+/* Green filter range slider (no border, green track) */
+.range-green {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 9999px;
+  background: #32B828;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.range-green::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 2px solid #32B828;
+  cursor: pointer;
+}
+
+.range-green::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 2px solid #32B828;
+  cursor: pointer;
+}
